@@ -10,7 +10,8 @@ import {APIResponseModel, IDesignation} from '../../model/interface/role';
   styleUrl: './designation.component.css'
 })
 export class DesignationComponent implements OnInit {
-  designationList: IDesignation[] = []
+  designationList: IDesignation[] = [];
+  isLoader: boolean = true;
 
   masterService = inject(MasterService);
 
@@ -21,7 +22,8 @@ export class DesignationComponent implements OnInit {
 
   getAllDesignations(): void {
     this.masterService.getAllDesignations().subscribe((result: APIResponseModel) => {
-      this.designationList = result.data
+      this.designationList = result.data;
+      this.isLoader = false;
     }, error => {
       alert("API Error / Network Down");
     })

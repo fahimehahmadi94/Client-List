@@ -1,24 +1,22 @@
-<div class="container mt-2">
-  <div class="row">
-    <div class="col-12 text-center">
-      <div class="btn-group">
-        <button type="button" (click)="changeTab('Roles')" class="btn"
-                [ngClass]="currentComponent === 'Roles' ? 'btn-success' : 'border-secondary'">
-          Role
-        </button>
-        <button type="button" (click)="changeTab('Designations')" class="btn"
-                [ngClass]="currentComponent === 'Designations' ? 'btn-success' : 'border-secondary'">
-          Designation
-        </button>
-      </div>
+<div class="row">
+  <div class="col-12 text-center">
+    <div class="btn-group">
+      <button type="button" (click)="changeTab('Roles')" class="btn"
+              [ngClass]="currentComponent === 'Roles' ? 'btn-success' : 'border-secondary'">
+        Role
+      </button>
+      <button type="button" (click)="changeTab('Designations')" class="btn"
+              [ngClass]="currentComponent === 'Designations' ? 'btn-success' : 'border-secondary'">
+        Designation
+      </button>
     </div>
   </div>
-  <div class="row mt-2">
-    <div class="col-12" *ngIf="currentComponent === 'Roles'">
-      <app-roles></app-roles>
-    </div>
-    <div class="col-12" *ngIf="currentComponent === 'Designations'">
-      <app-designation></app-designation>
-    </div>
+</div>
+<div class="row pt-2">
+  <div class="col-12" *ngIf="currentComponent === 'Roles'">
+    <app-roles></app-roles>
+  </div>
+  <div class="col-12" *ngIf="currentComponent === 'Designations'">
+    <app-designation></app-designation>
   </div>
 </div>
