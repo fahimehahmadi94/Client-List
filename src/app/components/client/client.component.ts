@@ -28,14 +28,36 @@ export class ClientComponent implements OnInit {
   }
 
   onSaveClient() {
-    debugger;
-    this.clientService.addUpdate(this.clientObj).subscribe((res: APIResponseModel) => {
+    this.clientService.addUpdateClient(this.clientObj).subscribe((res: APIResponseModel) => {
       if (res.result) {
         alert('Client created Success');
         this.loadClient();
+        this.clientObj = new Client();
       } else {
         alert(res.message);
       }
     })
+  }
+
+  onDelete(id: number): void {
+    const isDelete = confirm("Are you sure you want to delete this client?");
+    if (isDelete) {
+      this.clientService.deleteClientById(id).subscribe((res: APIResponseModel) => {
+        if (res.result) {
+          alert('Client Delete Success');
+          this.loadClient();
+        } else {
+          alert(res.message);
+        }
+      })
+    }
+  }
+
+  onEdit(data: Client) {
+    this.clientObj = data;
+  }
+
+  onReset() {
+
   }
 }

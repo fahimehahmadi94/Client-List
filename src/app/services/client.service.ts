@@ -17,7 +17,7 @@ export class ClientService {
     return this.http.get<APIResponseModel>(environment.API_URL + 'GetAllClients');
   }
 
-  addUpdate(obj: Client): Observable<APIResponseModel> {
+  addUpdateClient(obj: Client): Observable<APIResponseModel> {
     return this.http.post<APIResponseModel>(environment.API_URL + 'AddUpdateClient', obj);
   }
 
