@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {APIResponseModel} from '../model/interface/role';
 import {environment} from '../../environments/environment.development';
-import {Client} from '../model/class/Client';
 
 @Injectable({
   providedIn: 'root'

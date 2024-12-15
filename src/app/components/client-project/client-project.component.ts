@@ -1,12 +1,11 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ClientProject} from '../../model/class/ClientProject';
 import {ClientProjectService} from '../../services/client-project.service';
-import {APIResponseModel, IEmployee} from '../../model/interface/role';
+import {APIResponseModel, IClientProject, IEmployee} from '../../model/interface/role';
 import {DatePipe} from '@angular/common';
 import {ClientService} from '../../services/client.service';
 import {Client} from '../../model/class/Client';
-
 @Component({
   selector: 'app-client-project',
   standalone: true,
@@ -43,10 +42,16 @@ export class ClientProjectComponent implements OnInit {
   clientService: ClientService = inject(ClientService);
   clientProjectService: ClientProjectService = inject(ClientProjectService);
 
+  firstName= signal('Angular 18');
+  projectList =  signal<IClientProject[]>([]);
+
   ngOnInit(): void {
     this.getAllEmployee();
     this.getAllClient();
     this.getAllClientProject();
+  }
+  changeFirstName(){
+    this.firstName.set('React Js');
   }
 
   getAllEmployee() {
@@ -61,9 +66,9 @@ export class ClientProjectComponent implements OnInit {
     })
   }
 
-  getAllClientProject(): void {
-    this.clientProjectService.getAllClientProjects().subscribe((res: APIResponseModel) => {
-      this.clientProjectList = res.data;
+   getAllClientProject(): void {
+    this.clientService.getAllClientProject().subscribe((res: APIResponseModel) => {
+      this.projectList.set(res.data);
     })
   }
 
